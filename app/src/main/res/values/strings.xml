@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CodeCraftAssignment</string>
+    <string name="map">Map</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
