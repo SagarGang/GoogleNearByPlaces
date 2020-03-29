@@ -8,7 +8,7 @@ import com.app.codecraftassignment.model.RestaurantResponse
 
 class RestaurantListViewModel(application: Application) : AndroidViewModel(application) {
 
-    var restaurantRepository: GetRestaurantRepository? = null
+    private var restaurantRepository: GetRestaurantRepository? = null
 
 
     init {

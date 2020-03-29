@@ -1,6 +1,6 @@
 package com.app.codecraftassignment.ui
 
-import Connection
+import com.app.codecraftassignment.util.Connection
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -32,7 +32,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
-import showToast
+import com.app.codecraftassignment.util.showToast
 
 
 class HomeActivity : AppCompatActivity(), ViewHolder.OnRestaurantSelectedListener,

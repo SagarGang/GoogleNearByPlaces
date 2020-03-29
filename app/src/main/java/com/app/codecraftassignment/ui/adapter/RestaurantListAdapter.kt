@@ -1,13 +1,12 @@
 package com.app.codecraftassignment.ui.adapter
 
-import android.app.Activity
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import calculateDistance
+import com.app.codecraftassignment.util.calculateDistance
 import com.app.codecraftassignment.R
 import com.app.codecraftassignment.model.RestaurantResponse
 import com.app.codecraftassignment.ui.HomeActivity
@@ -18,7 +17,7 @@ import java.net.URL
 class RestaurantListAdapter :
     RecyclerView.Adapter<ViewHolder>() {
 
-    lateinit var onSelectedListener: ViewHolder.OnRestaurantSelectedListener
+    private lateinit var onSelectedListener: ViewHolder.OnRestaurantSelectedListener
 
     var restaurant: MutableList<RestaurantResponse.Result> = mutableListOf()
         set(restaurant) {
@@ -65,7 +64,7 @@ class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         itemView.tv_rest_name.text = restaurant.name
         itemView.tv_rest_address.text = restaurant.rating.toString()
         itemView.tv_rest_distance.text =
-            restaurant?.geometry?.location?.let { calculateDistance(it.lat, it.lng) }.toString() + "m"
+            restaurant.geometry?.location?.let { calculateDistance(it.lat, it.lng) }.toString() + "m"
 
     }
 

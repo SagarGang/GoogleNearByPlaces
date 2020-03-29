@@ -1,9 +1,7 @@
-
+package com.app.codecraftassignment.util
 import android.content.Context
 import android.location.Location
-import android.util.Log
 import android.widget.Toast
-import com.app.codecraftassignment.util.SpLocation
 
 fun showToast(context: Context, msg: String?) {
     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()

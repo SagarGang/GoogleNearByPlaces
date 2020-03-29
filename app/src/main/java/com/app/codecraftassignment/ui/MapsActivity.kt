@@ -37,7 +37,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        list?.let {
+        list?.let { it ->
             for (i in 0 until it.size) {
 
                 val title = it[i].name

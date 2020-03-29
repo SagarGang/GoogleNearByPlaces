@@ -23,7 +23,7 @@ class GetRestaurantRepository {
     private val LOG_TAG = GetRestaurantListAsynTask::class.java.simpleName
     val restaurantResponseMutableLive = MutableLiveData<RestaurantResponse>()
 
-    val resLiveData: LiveData<RestaurantResponse> get() = restaurantResponseMutableLive
+    private val resLiveData: LiveData<RestaurantResponse> get() = restaurantResponseMutableLive
 
     fun getResponse(): LiveData<RestaurantResponse> {
         return resLiveData
@@ -84,7 +84,7 @@ class GetRestaurantRepository {
                     restaurantResponse = parseResponse(jsonResults)
 
                 } else {
-                    Log.e(LOG_TAG, "Error from Connection ${conn.responseCode}")
+                    Log.e(LOG_TAG, "Error from com.app.codecraftassignment.util.Connection ${conn.responseCode}")
                 }
 
             } catch (e: MalformedURLException) {
