@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.app.codecraftassignment.model.RestRequest
 import com.app.codecraftassignment.model.RestaurantResponse
 import com.app.codecraftassignment.util.Constants
 import org.json.JSONException
@@ -28,15 +29,13 @@ class GetRestaurantRepository {
         return resLiveData
     }
 
-    fun callRestaurant(request: String) {
-        GetRestaurantListAsynTask().execute(request)
+    fun callRestaurant(restRequest: RestRequest) {
+        GetRestaurantListAsynTask().execute(restRequest)
     }
 
     @SuppressLint("StaticFieldLeak")
-    inner class GetRestaurantListAsynTask : AsyncTask<String, Void, RestaurantResponse>() {
-
-
-        override fun doInBackground(vararg params: String?): RestaurantResponse? {
+    inner class GetRestaurantListAsynTask : AsyncTask<RestRequest, Void, RestaurantResponse>() {
+        override fun doInBackground(vararg params: RestRequest?): RestaurantResponse? {
             var conn: HttpURLConnection? = null
             val jsonResults: String?
 
@@ -45,9 +44,15 @@ class GetRestaurantRepository {
                 val sb = StringBuilder(Constants.BASE_URL)
                 sb.append(Constants.OUTPUT)
                 sb.append(Constants.RANK_BY)
-                sb.append(Constants.LOCATION + params[0])
+                sb.append(Constants.LOCATION + params[0]?.location)
                 sb.append(Constants.TYPE)
                 sb.append(Constants.API_KEY)
+
+                params[0]?.nextToken?.let {
+                   if (it.isNotEmpty()){
+                       sb.append(Constants.NEXT_TOKEN_REQ+it)
+                   }
+                }
 
                 val url = URL(sb.toString())
                 conn = url.openConnection() as HttpURLConnection
@@ -93,8 +98,6 @@ class GetRestaurantRepository {
             Log.d(LOG_TAG, "Return from DoIn Background")
             return restaurantResponse
         }
-
-
         override fun onPostExecute(result: RestaurantResponse?) {
             super.onPostExecute(result)
             restaurantResponseMutableLive.postValue(result)
@@ -171,6 +174,7 @@ class GetRestaurantRepository {
             Log.d(LOG_TAG, "Response Parse Successfully")
             return restaurantResponse
         }
+
     }
 }
 

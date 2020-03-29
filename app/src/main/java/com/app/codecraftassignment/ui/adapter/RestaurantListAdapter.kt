@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import calculateDistance
 import com.app.codecraftassignment.R
 import com.app.codecraftassignment.model.RestaurantResponse
 import kotlinx.android.synthetic.main.restaurant_item.view.*
@@ -15,7 +16,6 @@ class RestaurantListAdapter :
 
     var restaurant: MutableList<RestaurantResponse.Result> = mutableListOf()
         set(restaurant) {
-            field.clear()
             field.addAll(restaurant)
             notifyDataSetChanged()
         }
@@ -50,6 +50,8 @@ class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         }
         itemView.tv_rest_name.text = restaurant.name
         itemView.tv_rest_address.text = restaurant.rating.toString()
+        itemView.tv_rest_distance.text =
+            restaurant?.geometry?.location?.let { calculateDistance(it.lat, it.lng) }.toString() + "m"
 
     }
 

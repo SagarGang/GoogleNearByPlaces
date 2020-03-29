@@ -2,4 +2,5 @@
     <string name="app_name">CodeCraftAssignment</string>
     <string name="map">Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="no_internet_connection">No Internet Connection</string>
 </resources>

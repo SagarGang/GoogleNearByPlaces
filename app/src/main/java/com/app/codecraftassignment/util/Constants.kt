@@ -8,6 +8,7 @@ object Constants {
     const val RANK_BY = "&rankby=distance"
     const val LOCATION = "&location="
     const val OUTPUT = "/json?"
+    const val NEXT_TOKEN_REQ = "&next_page_token="
 
 
     const val LIST = "list"
