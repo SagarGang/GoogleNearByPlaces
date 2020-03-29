@@ -1,5 +1,8 @@
 package com.app.codecraftassignment.ui.adapter
 
+import android.app.Activity
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import calculateDistance
 import com.app.codecraftassignment.R
 import com.app.codecraftassignment.model.RestaurantResponse
+import com.app.codecraftassignment.ui.HomeActivity
 import kotlinx.android.synthetic.main.restaurant_item.view.*
+import java.net.URL
+
 
 class RestaurantListAdapter :
     RecyclerView.Adapter<ViewHolder>() {
@@ -47,6 +53,14 @@ class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     fun bindRepo(restaurant: RestaurantResponse.Result, onSelected: OnRestaurantSelectedListener) {
         itemView.setOnClickListener {
             onSelected.onRestaurantSelected(restaurant)
+        }
+        AsyncTask.execute {
+            val url = URL(restaurant.icon)
+            val bitMap = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            val con = itemView.context as HomeActivity
+            con.runOnUiThread {
+                itemView.iv_restaurant.setImageBitmap(bitMap)
+            }
         }
         itemView.tv_rest_name.text = restaurant.name
         itemView.tv_rest_address.text = restaurant.rating.toString()

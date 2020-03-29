@@ -243,7 +243,7 @@ class HomeActivity : AppCompatActivity(), ViewHolder.OnRestaurantSelectedListene
 
 
     override fun onRestaurantSelected(restaurant: RestaurantResponse.Result) {
-
+            // Zoom screen with photo
     }
 
     override fun onConnected(p0: Bundle?) {
