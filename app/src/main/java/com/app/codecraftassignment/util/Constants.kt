@@ -3,7 +3,7 @@ package com.app.codecraftassignment.util
 object Constants {
     const val BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch"
     const val PERMISSION_REQUEST_LOCATION = 1001
-    const val API_KEY = "&key=AIzaSyAMZlvyYsOA1KnEYgULZF_9-vSk0qdNDHQ"
+    const val API_KEY = "&key="
     const val TYPE = "&type=restaurant"
     const val RANK_BY = "&rankby=distance"
     const val LOCATION = "&location="
